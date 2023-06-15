@@ -1882,7 +1882,7 @@ ShinySession <- R6Class(
     handleRequest = function(req) {
       # TODO: Turn off caching for the response
       subpath <- req$PATH_INFO
-
+      cat(stderr(), subpath)
       matches <- regmatches(subpath,
                             regexec("^/([a-z]+)/([^?]*)",
                                     subpath,
