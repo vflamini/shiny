@@ -122,6 +122,7 @@ FileUploadContext <- R6Class(
       private$operations$get(jobId)
     },
     onJobFinished = function(jobId) {
+      cat(stderr(), jobId, "\n")
       private$operations$remove(jobId)
     },
     # Remove the directories containing file uploads; this is to be called when
