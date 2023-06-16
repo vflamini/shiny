@@ -1944,7 +1944,7 @@ ShinySession <- R6Class(
         dlname <- URLdecode(dlmatches[2])
         download <- self$downloads$get(dlname)
         if (is.null(download))
-          cat(stderr(), "2nd nf\n")
+          # cat(stderr(), "2nd nf\n")
           return(httpResponse(404, 'text/html', '<h1>Not Found</h1>'))
 
         filename <- ifelse(is.function(download$filename),
@@ -1988,7 +1988,7 @@ ShinySession <- R6Class(
                   }
                   if (!file.exists(tmpdata)) {
                     # If no file was created, return a 404
-                    cat(stderr(), "tmpdata nf\n")
+                    # cat(stderr(), "tmpdata nf\n")
                     return(httpResponse(404, content = "404 Not found"))
                   }
                   return(httpResponse(
