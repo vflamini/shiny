@@ -2026,7 +2026,7 @@ ShinySession <- R6Class(
         download <- self$downloads$get(dlname)
         return(download$filter(download$data, req))
       }
-      cat(stderr(), "download nf\n")
+      # cat(stderr(), "download nf\n")
       return(httpResponse(404, 'text/html', '<h1>Not Found</h1>'))
     },
     # Send a file to the client
