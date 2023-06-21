@@ -391,7 +391,6 @@ HandlerManager <- R6Class("HandlerManager",
 
         res <- hybrid_chain(response, function(response) {
           if (is.null(response))
-            cat(stderr(), "middleware 404\n")
             response <- httpResponse(404, content="<h1>Not Found</h1>")
 
           if (inherits(response, "httpResponse")) {
@@ -420,6 +419,7 @@ HandlerManager <- R6Class("HandlerManager",
             # Assume it's a Rook-compatible response
             return(response)
           }
+          cat(stderr(), response$content, "middleware 404\n")
         })
       }
     }
