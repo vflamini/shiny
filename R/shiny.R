@@ -1893,6 +1893,7 @@ ShinySession <- R6Class(
       if (matches[2] == 'file') {
         savedFile <- self$files$get(URLdecode(matches[3]))
         if (is.null(savedFile))
+          cat(stderr(), "file not found\n")
           return(httpResponse(404, 'text/html', '<h1>Not Found</h1>'))
 
         return(httpResponse(200, savedFile$contentType, savedFile$data))
@@ -2023,7 +2024,6 @@ ShinySession <- R6Class(
         download <- self$downloads$get(dlname)
         return(download$filter(download$data, req))
       }
-
       return(httpResponse(404, 'text/html', '<h1>Not Found</h1>'))
     },
     # Send a file to the client
