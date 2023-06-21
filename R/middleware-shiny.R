@@ -81,7 +81,7 @@ sessionHandler <- function(req) {
     cat(stderr(), "shinysession is null\n")
     shinysession <- appsByToken$get(session)
     timeout <- timeout + 1
-    if (timeout > 100000) {
+    if (timeout > 500) {
       return(NULL)
     }
   }
