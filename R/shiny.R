@@ -1863,6 +1863,7 @@ ShinySession <- R6Class(
       }
 
       jobId <- private$fileUploadContext$createUploadOperation(fileInfos)
+      cat(stderr(), jobId, "\n")
       return(list(jobId=jobId,
                   uploadUrl=paste('session', self$token, 'upload',
                                   paste(jobId, "?w=", workerId(), sep=""),
