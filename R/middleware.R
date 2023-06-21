@@ -419,7 +419,7 @@ HandlerManager <- R6Class("HandlerManager",
             # Assume it's a Rook-compatible response
             return(response)
           }
-          cat(stderr(), response$content, "middleware 404\n")
+          cat(stdout(), response$content, " middleware 404\n")
         })
       }
     }
