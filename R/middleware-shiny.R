@@ -64,7 +64,7 @@ reactLogHandler <- function(req) {
 
 sessionHandler <- function(req) {
   path <- req$PATH_INFO
-  cat(stderr(), "sessionHandler ", path, "\n")
+  cat(stderr(), "sessionHandler path ", path, "\n")
   if (is.null(path))
     return(NULL)
 
@@ -76,13 +76,14 @@ sessionHandler <- function(req) {
   subpath <- matches[[1]][4]
 
   shinysession <- appsByToken$get(session)
-  if (is.null(shinysession))
+  if (is.null(shinysession)) {
+    cat(stderr(), "shinysession is null\n")
     return(NULL)
-
+  }
   subreq <- as.environment(as.list(req, all.names=TRUE))
   subreq$PATH_INFO <- subpath
   subreq$SCRIPT_NAME <- paste(subreq$SCRIPT_NAME, matches[[1]][2], sep='')
-
+  cat(stderr(), "sessionHandler subpath", subpath, "\n")
   withReactiveDomain(shinysession, {
     shinysession$handleRequest(subreq)
   })
