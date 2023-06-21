@@ -76,9 +76,14 @@ sessionHandler <- function(req) {
   subpath <- matches[[1]][4]
 
   shinysession <- appsByToken$get(session)
+  timeout <- 0
   while (is.null(shinysession)) {
     cat(stderr(), "shinysession is null\n")
     shinysession <- appsByToken$get(session)
+    timeout <- timeout + 1
+    if (timeout > 100000) {
+      return(NULL)
+    }
   }
   subreq <- as.environment(as.list(req, all.names=TRUE))
   subreq$PATH_INFO <- subpath
