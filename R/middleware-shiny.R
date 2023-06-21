@@ -64,6 +64,7 @@ reactLogHandler <- function(req) {
 
 sessionHandler <- function(req) {
   path <- req$PATH_INFO
+  cat(stderr(), "sessionHandler ", path, "\n")
   if (is.null(path))
     return(NULL)
 
