@@ -185,6 +185,7 @@ createAppHandlers <- function(httpHandlers, serverFuncSource) {
       if (is.null(shinysession)) {
         cat(stderr(), "session is null in server.r\n")
       }
+      cat(stderr(), shinysession$token, "\n")
       appsByToken$set(shinysession$token, shinysession)
       shinysession$setShowcase(.globals$showcaseDefault)
 
